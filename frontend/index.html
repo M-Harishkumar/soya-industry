@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoyaSetu | ABT Consumer Products Division Procurement Platform</title>
+  <link rel="stylesheet" href="/static/css/styles.css?v=3.0.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Toast Feed Container -->
+  <div id="toast-container"></div>
+
+  <div class="app-container">
+
+    <!-- Primary Navigation Sidebar -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-badge">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">SoyaSetu</div>
+            <div class="brand-subtitle">ABT-CPD &bull; Plant 01</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-menu">
+        <div class="nav-group-label">Operations</div>
+        
+        <div class="nav-link active" data-view="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Executive Dashboard</span>
+        </div>
+
+        <div class="nav-link" data-view="market">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          <span>Market Intelligence</span>
+        </div>
+
+        <div class="nav-link" data-view="suppliers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+          <span>Supplier Intelligence</span>
+        </div>
+
+        <div class="nav-link" data-view="quality">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Quality Gate & Specs</span>
+        </div>
+
+        <div class="nav-link" data-view="inventory">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          <span>Inventory Dynamics</span>
+        </div>
+
+        <div class="nav-group-label">Decision Support</div>
+
+        <div class="nav-link" data-view="parity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+          <span>Landed Cost Parity</span>
+        </div>
+
+        <div class="nav-link" data-view="optimization">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>Procurement Optimizer</span>
+        </div>
+
+        <div class="nav-link" data-view="agents">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 9h6v6H9z"/><path d="M15 2v1"/><path d="M9 2v1"/><path d="M15 21v1"/><path d="M9 21v1"/><path d="M2 15h1"/><path d="M2 9h1"/><path d="M21 15h1"/><path d="M21 9h1"/></svg>
+          <span>Agent Control Centre</span>
+        </div>
+
+        <div class="nav-link" data-view="scenarios">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="1" x2="7" y1="14" y2="14"/><line x1="9" x2="15" y1="8" y2="8"/><line x1="17" x2="23" y1="16" y2="16"/></svg>
+          <span>Scenario Sandbox</span>
+        </div>
+
+        <div class="nav-group-label">Governance</div>
+
+        <div class="nav-link" data-view="alerts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <span>Operational Alerts</span>
+        </div>
+
+        <div class="nav-link" data-view="approvals">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+          <span>Purchase Authorization</span>
+        </div>
+
+        <div class="nav-link" data-view="audit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+          <span>Audit Logs & Security</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <span>Build 2.4.0-prod</span>
+        <span class="num-mono" style="font-size:10.5px;">SEC: WAL-ON</span>
+      </div>
+    </aside>
+
+    <!-- Main Application Canvas -->
+    <div class="app-main">
+      <!-- Universal Top Bar -->
+      <header class="app-header">
+        <div class="header-breadcrumbs">
+          <span>ABT-CPD Operations</span>
+          <span>/</span>
+          <strong id="active-breadcrumb-label">Executive Dashboard</strong>
+        </div>
+
+        <div class="header-right">
+          <div class="system-status-indicator">
+            <span class="status-dot pulsing"></span>
+            <span id="system-clock" class="num-mono">--:--:--</span>
+          </div>
+
+          <div class="role-badge-container">
+            <label for="role-selector" style="font-size:11px; font-weight:600; color:var(--slate-500); text-transform:uppercase;">User Context:</label>
+            <select id="role-selector" class="role-select-box"></select>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:8px; padding-left:12px; border-left:1px solid var(--border-default);">
+            <div style="width:28px; height:28px; border-radius:50%; background:var(--slate-900); color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:600; font-size:11.5px;" id="user-display-initials">VR</div>
+            <div>
+              <div id="user-display-name" style="font-size:12px; font-weight:600; color:var(--slate-900); line-height:1.2;">Vikramaditya Rao</div>
+              <div id="user-display-role" style="font-size:10.5px; color:var(--slate-500); font-weight:500;">Procurement Head</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- View Panels Canvas -->
+      <main class="view-body">
+
+        <!-- ==================== VIEW 1: EXECUTIVE DASHBOARD ==================== -->
+        <section id="view-dashboard" class="view-panel">
+          <div id="dashboard-action-banner" class="notice-box info">
+            <div>
+              <div class="notice-title" id="dash-banner-title">Loading system status...</div>
+              <div id="dash-banner-desc">Analyzing market trends, silo stocks, and procurement economics.</div>
+            </div>
+          </div>
+
+          <!-- 6 Stat Cards Grid -->
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-caption">Available Usable Stock</div>
+              <div id="kpi-stock-val" class="stat-metric num-mono">--</div>
+              <div class="stat-meta">Plant Silo Storage</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">Coverage Days</div>
+              <div id="kpi-cover-val" class="stat-metric num-mono">--</div>
+              <div class="stat-meta" style="color:var(--danger-solid);">Safety Threshold: 15d</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">Domestic TLC</div>
+              <div id="kpi-dom-tlc-val" class="stat-metric num-mono">--</div>
+              <div class="stat-meta">Indore / Latur Delivered</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">Import TLC</div>
+              <div id="kpi-imp-tlc-val" class="stat-metric num-mono">--</div>
+              <div class="stat-meta">CIF Nhava Sheva (45d)</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">Parity Spread</div>
+              <div id="kpi-spread-val" class="stat-metric num-mono">--</div>
+              <div class="stat-meta">Dom TLC - Imp TLC</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">Operational Alerts</div>
+              <div id="kpi-alerts-val" class="stat-metric num-mono" style="color:var(--danger-solid);">--</div>
+              <div class="stat-meta">Unresolved Incidents</div>
+            </div>
+          </div>
+
+          <!-- Dual Column: Active Purchase Docket & Benchmark Trend -->
+          <div style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:16px;">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Pending Procurement Authorization</span>
+                <button onclick="App.loadView('approvals')" class="btn btn-secondary btn-sm">Review Docket</button>
+              </div>
+              <div class="card-body" id="dashboard-active-rec">
+                <!-- Injected dynamically -->
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">30-Day Benchmark Price Tracking</span>
+                <span class="badge-pill neutral">Indore Spot vs CBOT Active</span>
+              </div>
+              <div class="card-body" style="height:240px; position:relative;">
+                <canvas id="chart-dashboard-market"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 2: MARKET INTELLIGENCE ==================== -->
+        <section id="view-market" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Market Intelligence & Volatility Analysis</h2>
+              <p>Tracking domestic Mandis, international CIF benchmarks, currency dynamics, and seasonal harvest curves</p>
+            </div>
+            <div class="view-actions">
+              <button onclick="App.openModal('modal-price-update')" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg>
+                <span>Record Spot Quote</span>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-bottom:16px;">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Historical Price Movement (Past 90 Business Days)</span>
+                <span class="badge-pill neutral">Domestic (INR/MT) vs CBOT (USD/MT)</span>
+              </div>
+              <div class="card-body" style="height:280px; position:relative;">
+                <canvas id="chart-market-history"></canvas>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Monthly Seasonality Variance</span>
+                <span class="badge-pill neutral">% Deviation from Annual Mean</span>
+              </div>
+              <div class="card-body" style="height:280px; position:relative;">
+                <canvas id="chart-market-seasonality"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:2fr 1fr; gap:16px;">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">45-Day Econometric Price Forecast</span>
+                <span class="badge-pill success">SARIMAX + LightGBM Ensemble (95% CI)</span>
+              </div>
+              <div class="card-body" style="height:240px; position:relative;">
+                <canvas id="chart-market-forecast"></canvas>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Model Backtest & Performance</span>
+              </div>
+              <div class="card-body">
+                <div style="display:flex; flex-direction:column; gap:10px; font-size:12.5px;">
+                  <div style="display:flex; justify-content:space-between; padding-bottom:6px; border-bottom:1px solid var(--slate-100);">
+                    <span style="color:var(--slate-500);">Holdout Horizon:</span>
+                    <strong>60 Chronological Days</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding-bottom:6px; border-bottom:1px solid var(--slate-100);">
+                    <span style="color:var(--slate-500);">Mean Absolute % Error (MAPE):</span>
+                    <strong id="mkt-mape" class="num-mono" style="color:var(--success-solid);">2.41%</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding-bottom:6px; border-bottom:1px solid var(--slate-100);">
+                    <span style="color:var(--slate-500);">Root Mean Squared Error (RMSE):</span>
+                    <strong id="mkt-rmse" class="num-mono">₹94.2 / MT</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding-bottom:6px; border-bottom:1px solid var(--slate-100);">
+                    <span style="color:var(--slate-500);">Directional Turning Accuracy:</span>
+                    <strong id="mkt-acc" class="num-mono" style="color:var(--primary-blue);">78.4%</strong>
+                  </div>
+                  <p style="font-size:11px; color:var(--slate-500); line-height:1.4; margin-top:4px;">
+                    Forecast conditioned on Mandi arrival volumes, CBOT active contract closes, and USD/INR exchange drift.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 3: SUPPLIER INTELLIGENCE ==================== -->
+        <section id="view-suppliers" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Vendor Master & Commercial Intelligence</h2>
+              <p>Audited performance scorecards, active commercial quotations, and delivery reliability records</p>
+            </div>
+          </div>
+
+          <div class="card table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Vendor Identity</th>
+                  <th>Operating Hub</th>
+                  <th>Origin Type</th>
+                  <th style="text-align:right;">Overall Score</th>
+                  <th style="text-align:right;">Active Quote</th>
+                  <th style="text-align:right;">Lead Time</th>
+                  <th>Quality Gate Status</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="suppliers-table-body">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 4: QUALITY GATE ==================== -->
+        <section id="view-quality" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Quality Assurance & Specification Gate</h2>
+              <p>Enforcing mandatory ABT-CPD raw material standards to protect extraction plant yield and silo longevity</p>
+            </div>
+            <div class="view-actions">
+              <button onclick="App.openModal('modal-quality-test')" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <span>Evaluate Batch Parameters</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Approved Specifications Table -->
+          <div class="card table-container" style="margin-bottom:20px;">
+            <div class="card-header">
+              <span class="card-title">Approved Raw Material Tolerances (Soya Sakthi Crushing Standard)</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Unit</th>
+                  <th style="text-align:right;">Min Specification</th>
+                  <th style="text-align:right;">Max Specification</th>
+                  <th>Policy Enforcement</th>
+                  <th>Technical Justification</th>
+                </tr>
+              </thead>
+              <tbody id="quality-specs-body">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Laboratory Inspection Reports -->
+          <div class="card table-container">
+            <div class="card-header">
+              <span class="card-title">Recent Inspection Certificates & Gate Outcomes</span>
+              <span class="badge-pill neutral">Mandatory Rejection Rule Enforced</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Batch Number</th>
+                  <th>Vendor</th>
+                  <th>Sample Date</th>
+                  <th style="text-align:right;">Moisture</th>
+                  <th style="text-align:right;">Crude Protein</th>
+                  <th style="text-align:right;">Oil Content</th>
+                  <th style="text-align:right;">Foreign Matter</th>
+                  <th>Gate Status</th>
+                  <th>Analytical Assessment</th>
+                </tr>
+              </thead>
+              <tbody id="quality-reports-body">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 5: INVENTORY DYNAMICS ==================== -->
+        <section id="view-inventory" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Inventory Dynamics & Crushing Consumption</h2>
+              <p>Tracking usable buffer levels, daily solvent consumption, safety stock thresholds, and delivery pipelines</p>
+            </div>
+            <div class="view-actions">
+              <button onclick="App.openModal('modal-inventory-update')" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <span>Adjust Silo Readings</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-caption">Physical vs Usable</div>
+              <div id="inv-usable" class="stat-metric num-mono">--</div>
+              <div class="stat-meta">Physical: <span id="inv-physical" class="num-mono">--</span> | Res: <span id="inv-reserved" class="num-mono">--</span></div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">Available Usable Stock</div>
+              <div id="inv-available" class="stat-metric num-mono" style="color:var(--primary-blue);">--</div>
+              <div class="stat-meta">Unrestricted Silo Stock</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">Daily Plant Crush</div>
+              <div id="inv-crush" class="stat-metric num-mono">--</div>
+              <div class="stat-meta">Safety Threshold: <span id="inv-safety" class="num-mono">--</span></div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-caption">30-Day Deficit Need</div>
+              <div id="inv-net-req" class="stat-metric num-mono" style="color:var(--danger-solid);">--</div>
+              <div class="stat-meta">Domestic ROP: <span id="inv-rop-dom" class="num-mono">--</span></div>
+            </div>
+          </div>
+
+          <!-- Projection Chart -->
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header">
+              <span class="card-title">30-Day Forward Stock Trajectory vs. Safety Stock Boundary</span>
+            </div>
+            <div class="card-body" style="height:250px; position:relative;">
+              <canvas id="chart-inventory-projection"></canvas>
+            </div>
+          </div>
+
+          <!-- Incoming Orders Pipeline -->
+          <div class="card table-container">
+            <div class="card-header">
+              <span class="card-title">Confirmed In-Transit Purchase Orders</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>PO Reference</th>
+                  <th>Vendor</th>
+                  <th style="text-align:right;">Quantity</th>
+                  <th>Channel</th>
+                  <th>Estimated Arrival</th>
+                  <th>Logistics Status</th>
+                  <th style="text-align:right;">Landed Cost</th>
+                </tr>
+              </thead>
+              <tbody id="incoming-shipments-body">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 6: LANDED COST PARITY ==================== -->
+        <section id="view-parity" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Total Landed Cost (TLC) Parity Framework</h2>
+              <p>Itemized cost waterfall comparing Domestic Mandi deliveries against International CIF maritime imports</p>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+            <!-- Domestic Sourcing Waterfall -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Domestic Mandi Sourcing (Indore / Latur)</span>
+                <span class="badge-pill neutral">Lead Time: 5 Days</span>
+              </div>
+              <div class="card-body">
+                <table class="data-table">
+                  <tbody>
+                    <tr><td style="color:var(--slate-500);">Base Mandi Spot Auction Quote</td><td style="text-align:right;" id="parity-dom-spot" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">APMC Cess & Mandi Tax (1.5%)</td><td style="text-align:right;" id="parity-dom-apmc" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">Mandi Bagging, Stitching & Labor</td><td style="text-align:right;" id="parity-dom-handling" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">Inland Road Freight to Crushing Plant</td><td style="text-align:right;" id="parity-dom-freight" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">Transit Insurance & Shrinkage Allowance (0.4%)</td><td style="text-align:right;" id="parity-dom-insurance" class="num-mono">--</td></tr>
+                    <tr style="border-top:2px solid var(--border-default); font-weight:700;">
+                      <td>TOTAL DOMESTIC LANDED COST</td>
+                      <td style="text-align:right; color:var(--success-solid); font-size:14px;" id="parity-dom-total" class="num-mono">--</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Import Sourcing Waterfall -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">International Sourcing (CIF Nhava Sheva / Kandla)</span>
+                <span class="badge-pill neutral">Lead Time: 45 Days</span>
+              </div>
+              <div class="card-body">
+                <table class="data-table">
+                  <tbody>
+                    <tr><td style="color:var(--slate-500);">CIF Vessel Quote (USD/MT)</td><td style="text-align:right;" id="parity-imp-cif-usd" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">Converted CIF Value (INR)</td><td style="text-align:right;" id="parity-imp-cif-inr" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">Basic Customs Duty + AIDC (5%)</td><td style="text-align:right;" id="parity-imp-duty" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">Port Wharfage, Stevedoring & CHA Fees</td><td style="text-align:right;" id="parity-imp-port" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">Port-to-Plant Rail/Road Container Freight</td><td style="text-align:right;" id="parity-imp-freight" class="num-mono">--</td></tr>
+                    <tr><td style="color:var(--slate-500);">45-Day Transit LC Financing (12% p.a.)</td><td style="text-align:right;" id="parity-imp-finance" class="num-mono">--</td></tr>
+                    <tr style="border-top:2px solid var(--border-default); font-weight:700;">
+                      <td>TOTAL IMPORT LANDED COST</td>
+                      <td style="text-align:right; color:var(--primary-blue); font-size:14px;" id="parity-imp-total" class="num-mono">--</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Parity Spread Evaluation -->
+          <div class="card" style="margin-bottom:16px;">
+            <div class="card-header">
+              <span class="card-title">Import Parity Spread Evaluation</span>
+              <span id="parity-spread-badge" class="badge-pill">--</span>
+            </div>
+            <div class="card-body">
+              <p id="parity-rationale-text" style="font-size:13px; color:var(--slate-600); line-height:1.5;"></p>
+            </div>
+          </div>
+
+          <!-- Sensitivity Grid -->
+          <div class="card table-container">
+            <div class="card-header">
+              <span class="card-title">Parity Sensitivity Matrix across CBOT CIF Prices & USD/INR Exchange Rates</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr id="sensitivity-head"></tr>
+              </thead>
+              <tbody id="sensitivity-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 7: OPTIMIZATION ==================== -->
+        <section id="view-optimization" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Procurement Optimization Engine</h2>
+              <p>Constrained mathematical optimization reconciling inventory coverage, supplier lead times, and landed economics</p>
+            </div>
+          </div>
+
+          <div class="card" style="border-left:4px solid var(--primary-blue); margin-bottom:20px;">
+            <div class="card-header">
+              <span class="badge-pill success">Optimal Recommended Directive</span>
+            </div>
+            <div class="card-body">
+              <h3 id="opt-action-title" style="font-size:16px; font-weight:700; color:var(--slate-900); margin-bottom:6px;">--</h3>
+              <p id="opt-why-text" style="font-size:13px; color:var(--slate-600); margin-bottom:14px; line-height:1.5;"></p>
+
+              <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; background:var(--slate-50); padding:12px; border-radius:var(--radius-sm); font-size:12.5px;">
+                <div><span style="color:var(--slate-500);">Allocated Channel:</span> <strong id="opt-channel">--</strong></div>
+                <div><span style="color:var(--slate-500);">Order Volume:</span> <strong id="opt-qty" class="num-mono" style="color:var(--primary-blue);">--</strong></div>
+                <div><span style="color:var(--slate-500);">Est. Landed Cost:</span> <strong id="opt-tlc" class="num-mono">--</strong></div>
+                <div><span style="color:var(--slate-500);">Projected Arrival:</span> <strong id="opt-target-arrival">--</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="font-size:14px; font-weight:600; color:var(--slate-900); margin-bottom:10px;">Alternative Feasible Sourcing Tranches</h3>
+          <div id="opt-alternatives-container" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;"></div>
+        </section>
+
+        <!-- ==================== VIEW 8: AGENT CONTROL CENTRE ==================== -->
+        <section id="view-agents" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Agentic AI Procurement Control Centre</h2>
+              <p>Multi-agent telemetry, decentralized domain analysis, and deterministic consensus synthesis</p>
+            </div>
+          </div>
+
+          <div class="notice-box warning">
+            <div>
+              <div class="notice-title">Human-in-the-Loop Governance Guardrails Enforced</div>
+              <div>AI agents independently calculate telemetry and vote on trade-offs. No agent possesses authority to place purchase commitments or release financial letters of credit autonomously.</div>
+            </div>
+          </div>
+
+          <div id="agents-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-bottom:16px;"></div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Decision Orchestrator Synthesis & Trade-Off Resolution</span>
+              <span class="badge-pill success">Consensus Reached</span>
+            </div>
+            <div class="card-body">
+              <div style="font-size:14px; font-weight:700; color:var(--primary-blue); margin-bottom:6px;" id="orc-directive">--</div>
+              <p id="orc-why" style="font-size:12.5px; color:var(--slate-600); margin-bottom:12px; line-height:1.5;"></p>
+              
+              <div style="background:var(--slate-50); padding:12px; border-radius:var(--radius-sm);">
+                <div style="font-size:12px; font-weight:600; color:var(--slate-800); margin-bottom:6px;">Reconciliation of Conflicting Domain Pressures:</div>
+                <ul id="orc-tradeoffs" style="padding-left:16px; font-size:12px; color:var(--slate-700); line-height:1.6;"></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 9: ALERTS ==================== -->
+        <section id="view-alerts" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Operational Incident Radar & Alerts Feed</h2>
+              <p>Real-time exception triggers for buffer breaches, quality violations, market spikes, and port congestion</p>
+            </div>
+          </div>
+
+          <div id="alerts-feed-container"></div>
+        </section>
+
+        <!-- ==================== VIEW 10: SCENARIOS ==================== -->
+        <section id="view-scenarios" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Stress-Testing & What-If Scenario Sandbox</h2>
+              <p>Simulating geopolitical tariff shocks, exchange-rate swings, harvest disruptions, and freight escalations</p>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Shock Parameters</span>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
+                    <span>Domestic Spot Shock:</span>
+                    <span id="val-dom-shock" class="num-mono" style="color:var(--primary-blue);">0%</span>
+                  </div>
+                  <input type="range" id="scn-dom-shock" min="-20" max="35" value="0" style="width:100%;">
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
+                    <span>Customs Duty (BCD %):</span>
+                    <span id="val-duty" class="num-mono" style="color:var(--primary-blue);">0%</span>
+                  </div>
+                  <input type="range" id="scn-duty" min="0" max="25" value="0" style="width:100%;">
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
+                    <span>USD / INR Exchange Rate:</span>
+                    <span id="val-fx" class="num-mono" style="color:var(--primary-blue);">₹86.5</span>
+                  </div>
+                  <input type="range" id="scn-fx" min="82" max="95" step="0.5" value="86.5" style="width:100%;">
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
+                    <span>Ocean Freight ($/MT):</span>
+                    <span id="val-freight" class="num-mono" style="color:var(--primary-blue);">$42/MT</span>
+                  </div>
+                  <input type="range" id="scn-freight" min="30" max="85" value="42" style="width:100%;">
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
+                    <span>Logistics Transit Delay:</span>
+                    <span id="val-delay" class="num-mono" style="color:var(--primary-blue);">+0 Days</span>
+                  </div>
+                  <input type="range" id="scn-delay" min="0" max="30" value="0" style="width:100%;">
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
+                    <span>Batch Rejection Allowance:</span>
+                    <span id="val-reject" class="num-mono" style="color:var(--primary-blue);">0%</span>
+                  </div>
+                  <input type="range" id="scn-reject" min="0" max="20" value="0" style="width:100%;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Simulation Results -->
+            <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-header">
+                  <span class="card-title">Impact Modeling Results</span>
+                </div>
+                <div class="card-body">
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+                    <div style="background:var(--slate-50); padding:10px; border-radius:var(--radius-sm);">
+                      <div style="font-size:10.5px; color:var(--slate-500); font-weight:600; text-transform:uppercase;">Domestic Landed Cost</div>
+                      <div id="scn-res-dom-tlc" class="num-mono" style="font-size:18px; font-weight:700; color:var(--slate-900); margin-top:2px;">--</div>
+                    </div>
+                    <div style="background:var(--slate-50); padding:10px; border-radius:var(--radius-sm);">
+                      <div style="font-size:10.5px; color:var(--slate-500); font-weight:600; text-transform:uppercase;">Import Landed Cost</div>
+                      <div id="scn-res-imp-tlc" class="num-mono" style="font-size:18px; font-weight:700; color:var(--primary-blue); margin-top:2px;">--</div>
+                    </div>
+                  </div>
+
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+                    <div style="background:var(--slate-50); padding:10px; border-radius:var(--radius-sm);">
+                      <div style="font-size:10.5px; color:var(--slate-500); font-weight:600; text-transform:uppercase;">Parity Spread (Dom - Imp)</div>
+                      <div id="scn-res-spread" class="num-mono" style="font-size:16px; font-weight:700; color:var(--success-solid); margin-top:2px;">--</div>
+                    </div>
+                    <div style="background:var(--slate-50); padding:10px; border-radius:var(--radius-sm);">
+                      <div style="font-size:10.5px; color:var(--slate-500); font-weight:600; text-transform:uppercase;">Cost per Usable Tonne</div>
+                      <div id="scn-res-usable" class="num-mono" style="font-size:16px; font-weight:700; color:var(--slate-900); margin-top:2px;">--</div>
+                    </div>
+                  </div>
+
+                  <div class="notice-box info" style="margin-bottom:0;">
+                    <div>
+                      <div class="notice-title" id="scn-res-strategy">--</div>
+                      <div id="scn-res-summary" style="font-size:12px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== VIEW 11: APPROVALS ==================== -->
+        <section id="view-approvals" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>Purchase Order Authorization Dockets</h2>
+              <p>Formal procurement review lifecycles requiring executive authorization, volume modifications, or rejection</p>
+            </div>
+          </div>
+
+          <div id="approvals-list-container"></div>
+        </section>
+
+        <!-- ==================== VIEW 12: AUDIT TRAIL ==================== -->
+        <section id="view-audit" class="view-panel hidden">
+          <div class="view-header">
+            <div class="view-title-group">
+              <h2>System Governance & Immutable Audit Logs</h2>
+              <p>Cryptographically sequenced operational events verifying regulatory compliance and authorization trails</p>
+            </div>
+            <div class="view-actions">
+              <a href="/api/audit/export-csv?entity=recommendations" download class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                <span>Export Recommendations (CSV)</span>
+              </a>
+              <a href="/api/audit/export-csv?entity=audit" download class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                <span>Export Audit Logs (CSV)</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="card table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>User Identity</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                  <th>Entity</th>
+                  <th>Detailed Log Payload</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==================== MODALS & DIALOGS ==================== -->
+
+  <!-- Approval Decision Modal -->
+  <div id="approval-modal" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-action-title" class="modal-title">Executive Authorization</h3>
+        <button class="btn btn-sm" onclick="App.closeAllModals()" style="background:transparent; border:none; color:var(--slate-500); cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="approval-form">
+        <div class="modal-body">
+          <input type="hidden" id="modal-rec-id">
+          <input type="hidden" id="modal-action-type">
+
+          <div id="modal-modify-fields" style="display:none; margin-bottom:14px; background:var(--slate-50); padding:10px; border-radius:var(--radius-sm); border:1px solid var(--border-default);">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Adjust Allocated Quantity (MT):</label>
+              <input type="number" id="modal-mod-qty" placeholder="e.g. 2000" class="form-input num-mono">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Authorization Rationale & Regulatory Sign-Off Note (Mandatory):</label>
+            <textarea id="modal-notes" required rows="3" placeholder="State operational reason for authorization, volume revision, or rejection..." class="form-textarea"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="App.closeAllModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Commit Authorization</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Manual Price Update Modal -->
+  <div id="modal-price-update" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Record Verified Spot Quotation</h3>
+        <button class="btn btn-sm" onclick="App.closeAllModals()" style="background:transparent; border:none; color:var(--slate-500); cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="price-update-form" onsubmit="event.preventDefault(); App.handlePriceUpdate();">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Mandi Hub / Benchmark Origin:</label>
+            <input type="text" id="manual-origin" value="Indore Mandi (Spot)" required class="form-input">
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div class="form-group">
+              <label class="form-label">Spot Quote (₹/MT):</label>
+              <input type="number" id="manual-price" value="46500" step="10" required class="form-input num-mono">
+            </div>
+            <div class="form-group">
+              <label class="form-label">USD / INR Rate:</label>
+              <input type="number" id="manual-fx" value="86.5" step="0.1" required class="form-input num-mono">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label">Source Verification Method:</label>
+            <input type="text" id="manual-source" value="Telephone mandi quote verified with Madhya Bharat Agro Co-op" class="form-input">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="App.closeAllModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Persist Quote to Database</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Quality Batch Evaluation Modal -->
+  <div id="modal-quality-test" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Test Laboratory Sample Parameters</h3>
+        <button class="btn btn-sm" onclick="App.closeAllModals()" style="background:transparent; border:none; color:var(--slate-500); cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="quality-test-form" onsubmit="event.preventDefault(); App.handleBatchTest();">
+        <div class="modal-body">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Moisture Content (% &le; 10.0%):</label>
+              <input type="number" id="test-moisture" value="9.4" step="0.1" required class="form-input num-mono">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Crude Protein (% &ge; 38.0%):</label>
+              <input type="number" id="test-protein" value="38.5" step="0.1" required class="form-input num-mono">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Crude Oil Content (% &ge; 18.5%):</label>
+              <input type="number" id="test-oil" value="19.1" step="0.1" required class="form-input num-mono">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Foreign Matter (% &le; 2.0%):</label>
+              <input type="number" id="test-fm" value="1.4" step="0.1" required class="form-input num-mono">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Damaged Grains (% &le; 3.0%):</label>
+            <input type="number" id="test-damaged" value="2.1" step="0.1" required class="form-input num-mono">
+          </div>
+
+          <div id="test-result-box" style="display:none; padding:10px 12px; border-radius:var(--radius-sm); font-size:12.5px;"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="App.closeAllModals()">Close</button>
+          <button type="submit" class="btn btn-primary">Run Specification Verification</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Inventory Update Modal -->
+  <div id="modal-inventory-update" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Calibrate Plant Silo Stocks & Crushing Rate</h3>
+        <button class="btn btn-sm" onclick="App.closeAllModals()" style="background:transparent; border:none; color:var(--slate-500); cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="inventory-update-form" onsubmit="event.preventDefault(); App.handleInventoryUpdate();">
+        <div class="modal-body">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Physical Silo Volume (MT):</label>
+              <input type="number" id="upd-physical" value="4800" required class="form-input num-mono">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Accepted Usable Stock (MT):</label>
+              <input type="number" id="upd-usable" value="4200" required class="form-input num-mono">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Daily Crush Demand (MT/Day):</label>
+              <input type="number" id="upd-crush" value="300" required class="form-input num-mono">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Safety Buffer (MT):</label>
+              <input type="number" id="upd-safety" value="4500" required class="form-input num-mono">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="App.closeAllModals()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Silo Inventory</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Supplier Dossier Drawer Modal -->
+  <div id="modal-supplier-dossier" class="modal-overlay hidden">
+    <div class="modal-dialog" style="max-width:680px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="dossier-vendor-name">Supplier Dossier</h3>
+        <button class="btn btn-sm" onclick="App.closeAllModals()" style="background:transparent; border:none; color:var(--slate-500); cursor:pointer;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:16px;height:16px;"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="dossier-content">
+        <!-- Injected dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="App.closeAllModals()">Close Dossier</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/api.js?v=3.0.0"></script>
+  <script src="/static/js/charts.js?v=3.0.0"></script>
+  <script src="/static/js/app.js?v=3.0.0"></script>
+
+</body>
+</html>
