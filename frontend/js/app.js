@@ -37,9 +37,20 @@ const App = {
         const view = item.getAttribute("data-view");
         if (view) {
           this.loadView(view);
+          const sb = document.getElementById("app-sidebar");
+          if (sb && window.innerWidth <= 900) {
+            sb.classList.remove("open");
+          }
         }
       });
     });
+  },
+
+  toggleSidebar() {
+    const sb = document.getElementById("app-sidebar");
+    if (sb) {
+      sb.classList.toggle("open");
+    }
   },
 
   async loadAuthRoles() {
